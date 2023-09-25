@@ -53,10 +53,18 @@
             this.btt_loseSetting = new System.Windows.Forms.Button();
             this.lb_language = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.gbx_lockFoder = new System.Windows.Forms.GroupBox();
+            this.btt_Browse = new System.Windows.Forms.Button();
+            this.btt_unlock = new System.Windows.Forms.Button();
+            this.btt_Lock = new System.Windows.Forms.Button();
+            this.txtPath = new System.Windows.Forms.TextBox();
+            this.lb_foderPathLockfoder = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip2.SuspendLayout();
             this.gbx_delete.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gbx_setting.SuspendLayout();
+            this.gbx_lockFoder.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip2
@@ -83,6 +91,7 @@
             this.tsm_delete.Name = "tsm_delete";
             this.tsm_delete.Size = new System.Drawing.Size(210, 60);
             this.tsm_delete.Text = "Delete files";
+            this.tsm_delete.Click += new System.EventHandler(this.tsm_delete_Click);
             // 
             // tsm_encryption
             // 
@@ -166,12 +175,10 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Quét tất cả",
-            "Chỉ quét các file trong thư mục gốc",
-            "Quét các file tùy chọn"});
+            "Quét tất cả"});
             this.comboBox1.Location = new System.Drawing.Point(18, 105);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(345, 24);
+            this.comboBox1.Size = new System.Drawing.Size(209, 24);
             this.comboBox1.TabIndex = 25;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -273,9 +280,9 @@
             // 
             this.gbx_setting.Controls.Add(this.cbb_settingLanguage);
             this.gbx_setting.Controls.Add(this.btt_loseSetting);
-            this.gbx_setting.Location = new System.Drawing.Point(143, 0);
+            this.gbx_setting.Location = new System.Drawing.Point(325, 58);
             this.gbx_setting.Name = "gbx_setting";
-            this.gbx_setting.Size = new System.Drawing.Size(436, 318);
+            this.gbx_setting.Size = new System.Drawing.Size(481, 318);
             this.gbx_setting.TabIndex = 36;
             this.gbx_setting.TabStop = false;
             this.gbx_setting.Text = "setting";
@@ -290,6 +297,7 @@
             this.cbb_settingLanguage.Name = "cbb_settingLanguage";
             this.cbb_settingLanguage.Size = new System.Drawing.Size(181, 24);
             this.cbb_settingLanguage.TabIndex = 1;
+            this.cbb_settingLanguage.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // btt_loseSetting
             // 
@@ -299,6 +307,7 @@
             this.btt_loseSetting.TabIndex = 0;
             this.btt_loseSetting.Text = "close";
             this.btt_loseSetting.UseVisualStyleBackColor = true;
+            this.btt_loseSetting.Click += new System.EventHandler(this.btt_loseSetting_Click);
             // 
             // lb_language
             // 
@@ -314,12 +323,91 @@
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // gbx_lockFoder
+            // 
+            this.gbx_lockFoder.Controls.Add(this.btt_Browse);
+            this.gbx_lockFoder.Controls.Add(this.btt_unlock);
+            this.gbx_lockFoder.Controls.Add(this.btt_Lock);
+            this.gbx_lockFoder.Controls.Add(this.txtPath);
+            this.gbx_lockFoder.Controls.Add(this.lb_foderPathLockfoder);
+            this.gbx_lockFoder.Controls.Add(this.label1);
+            this.gbx_lockFoder.Location = new System.Drawing.Point(221, 0);
+            this.gbx_lockFoder.Name = "gbx_lockFoder";
+            this.gbx_lockFoder.Size = new System.Drawing.Size(664, 450);
+            this.gbx_lockFoder.TabIndex = 2;
+            this.gbx_lockFoder.TabStop = false;
+            this.gbx_lockFoder.Text = "Lock foder";
+            // 
+            // btt_Browse
+            // 
+            this.btt_Browse.Location = new System.Drawing.Point(545, 173);
+            this.btt_Browse.Margin = new System.Windows.Forms.Padding(4);
+            this.btt_Browse.Name = "btt_Browse";
+            this.btt_Browse.Size = new System.Drawing.Size(100, 28);
+            this.btt_Browse.TabIndex = 12;
+            this.btt_Browse.Text = "....";
+            this.btt_Browse.UseVisualStyleBackColor = true;
+            this.btt_Browse.Click += new System.EventHandler(this.btnBrowse_Click);
+            // 
+            // btt_unlock
+            // 
+            this.btt_unlock.Location = new System.Drawing.Point(350, 229);
+            this.btt_unlock.Margin = new System.Windows.Forms.Padding(4);
+            this.btt_unlock.Name = "btt_unlock";
+            this.btt_unlock.Size = new System.Drawing.Size(153, 49);
+            this.btt_unlock.TabIndex = 11;
+            this.btt_unlock.Text = "Unlock";
+            this.btt_unlock.UseVisualStyleBackColor = true;
+            this.btt_unlock.Click += new System.EventHandler(this.btt_unlock_Click);
+            // 
+            // btt_Lock
+            // 
+            this.btt_Lock.Location = new System.Drawing.Point(151, 229);
+            this.btt_Lock.Margin = new System.Windows.Forms.Padding(4);
+            this.btt_Lock.Name = "btt_Lock";
+            this.btt_Lock.Size = new System.Drawing.Size(143, 49);
+            this.btt_Lock.TabIndex = 10;
+            this.btt_Lock.Text = "Lock";
+            this.btt_Lock.UseVisualStyleBackColor = true;
+            this.btt_Lock.Click += new System.EventHandler(this.btt_Lock_Click);
+            // 
+            // txtPath
+            // 
+            this.txtPath.Location = new System.Drawing.Point(114, 175);
+            this.txtPath.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPath.Name = "txtPath";
+            this.txtPath.Size = new System.Drawing.Size(421, 22);
+            this.txtPath.TabIndex = 9;
+            // 
+            // lb_foderPathLockfoder
+            // 
+            this.lb_foderPathLockfoder.AutoSize = true;
+            this.lb_foderPathLockfoder.Location = new System.Drawing.Point(21, 179);
+            this.lb_foderPathLockfoder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_foderPathLockfoder.Name = "lb_foderPathLockfoder";
+            this.lb_foderPathLockfoder.Size = new System.Drawing.Size(79, 16);
+            this.lb_foderPathLockfoder.TabIndex = 8;
+            this.lb_foderPathLockfoder.Text = "Folder Path:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(210, 105);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(163, 25);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "LOCK FOLDER";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(892, 450);
             this.Controls.Add(this.menuStrip2);
+            this.Controls.Add(this.gbx_lockFoder);
             this.Controls.Add(this.gbx_delete);
             this.Controls.Add(this.gbx_setting);
             this.Controls.Add(this.lb_language);
@@ -331,6 +419,8 @@
             this.gbx_delete.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.gbx_setting.ResumeLayout(false);
+            this.gbx_lockFoder.ResumeLayout(false);
+            this.gbx_lockFoder.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -361,6 +451,13 @@
         private System.Windows.Forms.ComboBox cbb_settingLanguage;
         private System.Windows.Forms.Button btt_loseSetting;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.GroupBox gbx_lockFoder;
+        private System.Windows.Forms.Button btt_Browse;
+        private System.Windows.Forms.Button btt_unlock;
+        private System.Windows.Forms.Button btt_Lock;
+        private System.Windows.Forms.TextBox txtPath;
+        private System.Windows.Forms.Label lb_foderPathLockfoder;
+        private System.Windows.Forms.Label label1;
     }
 }
 

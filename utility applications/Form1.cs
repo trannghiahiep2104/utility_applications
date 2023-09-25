@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,15 +41,15 @@ namespace utility_applications
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbb_settingLanguage.SelectedIndex == 1)
+            if (cbb_settingLanguage.SelectedIndex == 0)
             {
 
                 tsm_delete.Text = "Xóa file";
-
+                lb_foderPathLockfoder.Text = "Đường dẫ foder"; 
                 tsm_encryption.Text = "Mã hóa";
                 tsm_setting.Text = "Cài đặt";
-
-
+                btt_Lock.Text = "Khóa";
+                btt_unlock.Text = "Mở Khóa"; 
                 lb_language.Text = "Ngôn ngữ";
                 bttDelete.Text = "Xóa";
                 bttselect_all.Text = "Chọn tất cả";
@@ -58,11 +59,12 @@ namespace utility_applications
                 lb_instructSetFoder.Text = "Vui lòng chọn thư mục muốn xóa các file trùng lập";
 
             }
-            if (cbb_settingLanguage.SelectedIndex == 0)
+            if (cbb_settingLanguage.SelectedIndex == 1)
             {
-
+                lb_foderPathLockfoder.Text = "foder path";
                 tsm_delete.Text = "Delete files";
-
+                btt_Lock.Text = "Lock";
+                btt_unlock.Text = "unlock";
                 tsm_encryption.Text = "Encode";
                 tsm_setting.Text = "Setting";
 
@@ -119,8 +121,8 @@ namespace utility_applications
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
 
-            string folderPath = e.Argument.ToString();
             Dictionary<string, string> fileHashes = new Dictionary<string, string>();
+            string folderPath = e.Argument.ToString();     
             string[] files = Directory.GetFiles(folderPath);
             lstv_listFileDelete.Invoke((MethodInvoker)delegate {
                 lstv_listFileDelete.CheckBoxes = true;
@@ -223,6 +225,7 @@ namespace utility_applications
         {
             gbx_delete.Visible = true;
             gbx_setting.Visible = false;
+            gbx_lockFoder.Visible = false;
         }
 
 
@@ -245,13 +248,69 @@ namespace utility_applications
 
         private void tsm_encryption_Click(object sender, EventArgs e)
         {
-
+            gbx_delete.Visible = false;
+            gbx_setting.Visible = false;
+            gbx_lockFoder.Visible = true;
         }
 
         private void tsm_setting_Click(object sender, EventArgs e)
         {
             gbx_setting.Visible = true;
             gbx_delete.Visible = false;
+            gbx_lockFoder.Visible=false;
+
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            getPath path = new getPath();
+            folderPath = path.Getpath();
+            txtPath.Text = folderPath;
+
+
+        }
+
+        
+
+        private void btt_Lock_Click(object sender, EventArgs e)
+        {
+            if (txtPath.Text.Length > 0)
+            {
+                try
+                {
+                    string folderPath = txtPath.Text;
+                    string adminUserName = Environment.UserName;
+                    DirectorySecurity ds = Directory.GetAccessControl(folderPath);
+                    FileSystemAccessRule fsa = new FileSystemAccessRule(adminUserName, FileSystemRights.FullControl, AccessControlType.Deny);
+                    ds.AddAccessRule(fsa);
+                    Directory.SetAccessControl(folderPath, ds);
+                    MessageBox.Show("folder is Locked");
+                }
+
+                catch
+                {
+                }
+            }
+        }
+
+        private void btt_unlock_Click(object sender, EventArgs e)
+        {
+            if (txtPath.Text.Length > 0)
+            {
+                try
+                {
+                    string folderPath = txtPath.Text;
+                    string adminUserName = Environment.UserName;
+                    DirectorySecurity ds = Directory.GetAccessControl(folderPath);
+                    FileSystemAccessRule fsa = new FileSystemAccessRule(adminUserName, FileSystemRights.FullControl, AccessControlType.Deny);
+                    ds.RemoveAccessRule(fsa);
+                    Directory.SetAccessControl(folderPath, ds);
+                    MessageBox.Show("folder is unlocked");
+                }
+                catch
+                {
+                }
+            }
         }
     }
 }
