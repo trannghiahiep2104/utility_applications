@@ -1,0 +1,17 @@
+D:\hocki7\web\utility applications\utility applications\bin\Debug\utility applications.exe.config
+D:\hocki7\web\utility applications\utility applications\bin\Debug\utility applications.exe
+D:\hocki7\web\utility applications\utility applications\bin\Debug\utility applications.pdb
+D:\hocki7\web\utility applications\utility applications\obj\Debug\utility applications.csproj.AssemblyReference.cache
+D:\hocki7\web\utility applications\utility applications\obj\Debug\utility_applications.Form1.resources
+D:\hocki7\web\utility applications\utility applications\obj\Debug\utility_applications.Properties.Resources.resources
+D:\hocki7\web\utility applications\utility applications\obj\Debug\utility applications.csproj.GenerateResource.cache
+D:\hocki7\web\utility applications\utility applications\obj\Debug\utility applications.csproj.CoreCompileInputs.cache
+D:\hocki7\web\utility applications\utility applications\obj\Debug\utility applications.exe
+D:\hocki7\web\utility applications\utility applications\obj\Debug\utility applications.pdb
+D:\hocki7\web\utility applications\utility applications\bin\Debug\Microsoft.WindowsAPICodePack.dll
+D:\hocki7\web\utility applications\utility applications\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+D:\hocki7\web\utility applications\utility applications\bin\Debug\Microsoft.WindowsAPICodePack.pdb
+D:\hocki7\web\utility applications\utility applications\bin\Debug\Microsoft.WindowsAPICodePack.xml
+D:\hocki7\web\utility applications\utility applications\bin\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
+D:\hocki7\web\utility applications\utility applications\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+D:\hocki7\web\utility applications\utility applications\obj\Debug\utility applications.csproj.CopyComplete
